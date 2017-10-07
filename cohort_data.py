@@ -53,7 +53,7 @@ def sort_by_cohort(filename):
             person = line.rstrip("\n")
             person = person.split("|")
             student_name = person[0] + " " + person[1]
-            
+
             if person[4] == "Winter 2016":
                 winter_16.append(student_name)
             elif person[4] == "Spring 2016":
@@ -64,7 +64,6 @@ def sort_by_cohort(filename):
                 fall_15.append(student_name)
             elif person[4] == "G":
                 ghosts.append(student_name)
-           
 
         all_students.extend([fall_15, winter_16, spring_16, summer_16, ghosts])
         # set(all_students)
@@ -84,10 +83,6 @@ def hogwarts_by_house(filename):
     [['Abercrombie', 'Bell', 'Brown', 'Coote', 'Finnigan', 'Granger', 'Johnson', 'Jordan', 'Kirke', 'Longbottom', 'Macdonald', 'McDonald', 'McLaggen', 'Patil', 'Peakes', 'Potter', 'Robins', 'Sloper', 'Thomas', 'Vane', 'Weasley', 'Weasley', 'Weasley', 'Weasley', 'Weasley', 'Wood'], ['Baddock', 'Bletchley', 'Bullstrode', 'Crabbe', 'Flint', 'Goyle', 'Higgs', 'Malfoy', 'Parkinson', 'Pritchard', 'Pucey', 'Zabini'], ['Bones', 'Branstone', 'Cauldwell', 'Diggory', 'Finch-Fletchley', 'Macmillan', 'Madley', 'Midgeon', 'Smith', 'Whitby', 'Zeller'], ['Ackerley', 'Belby', 'Boot', 'Brocklehurst', 'Carmichael', 'Clearwater', 'Corner', 'Davies', 'Goldstein', 'Lovegood', 'Patil', 'Quirke', 'Turpin'], ['Abbott', 'Chang', 'Creevey', 'Creevey', 'Edgecombe', 'Nott', 'Spinnet'], ['Baron', 'Friar', 'Lady', 'Nick'], ['Flitwick', 'McGonagall', 'Snape', 'Sprout']]
 
     """
-# order = first, last, house, head of house, term or i (for instructor)/g for ghost
-   
-
-    # Code goes here
 
     with open(filename) as personnel_data:
 
@@ -120,7 +115,7 @@ def hogwarts_by_house(filename):
                 hufflepuff.append(name)
             elif house == "Dumbledore's Army":
                 dumbledores_army.append(name)
-       
+        
         gryffindor = sorted(gryffindor)
         hufflepuff = sorted(hufflepuff)
         slytherin = sorted(slytherin)
@@ -156,9 +151,6 @@ def all_students_tuple_list(filename):
                 personnel = (student_name, person[2], person[3], person[4])
                 student_list.append(personnel)
 
-
-    # Code goes here
-
     return student_list
 
 
@@ -181,14 +173,10 @@ def find_cohort_by_student_name(student_list):
     'Student not found.'
 
     """
-
     student = raw_input("Which student are you looking for? > ").title()
     for item in student_list:
         if item[0] == student:
             return "{} was in the {} cohort".format(student, item[3])
-
-
-     
 
     return "Student not found."
 
@@ -210,8 +198,16 @@ def find_name_duplicates(filename):
     """
 
     duplicate_names = set()
+    with open(filename) as personnel_data:
+        all_students = []
 
-    # Code goes here
+        for line in personnel_data:
+            person = line.rstrip("\n")
+            person = person.split("|")
+            name = person[1]
+            all_students.append(name)
+            if name in all_students:
+                set.add(name)
 
     return duplicate_names
 
